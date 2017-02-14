@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>ToDo App</title>
+
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/todoapp.css">
+    <link rel="stylesheet" href="assets/css/nouislider.css">
+    <link rel="stylesheet" href="assets/css/alertify.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://use.fontawesome.com/46d995d2ab.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js"></script>
+</head>
+<body ng-app="toDoApp" ng-controller="toDoAppCtrl">
+<h1 class="text-center"> <button type="button" class="btn btn-success btn-circle btn-xl"><i class="glyphicon glyphicon-plus"></i></button> </h1>
+<div id="top" class="text-center">
+    <button type="button" class="btn btn-warning" ng-click="filterToDoS('all')">All</button>
+    <button type="button" class="btn btn-warning" ng-click="filterToDoS('active')">Active</button>
+    <button type="button" class="btn btn-warning" ng-click="filterToDoS('completed')">Completed</button>
+</div>
+
+<div id="addTask">
+    <div class="row">
+        <div class="col-sm-12 ">
+            <textarea class="form-control" rows="5" ng-model="addToDo"></textarea>
+            <span ng-bind="charRemaining">140</span>
+        </div>
+    </div>
+    <div class="row display">
+        <div class="col-sm-12">
+            <div id="colorSelector">
+                <p class="text-center">Task Color</p>
+            </div>
+        </div>
+    </div>
+    <div class="row display">
+        <div class="col-sm-12">
+            <div id="slider-range" class="display"></div>
+        </div>
+    </div>
+    <div class="row display addTaskButton">
+        <div class="col-sm-12 text-center">
+            <button type="button" class="btn btn-warning" ng-click="addToDoTask()">Add Task</button>
+            <button type="button" class="btn btn-warning" ng-click="cancelToDoTask()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <to-do-task ng-repeat="toDos in toDoAppData | filter:searchQuery" text="{{toDos.color}}"></to-do-task>
+</div>
+
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script src="app/js/nouislider.js"></script>
+<script src="app/js/toDoApp.js"></script>
+<script src="app/app.module.js"></script>
+<script src="app/controllers/toDoAppCtrl.js"></script>
+<script src="app/directives/toDoTask.js"></script>
+<script src="app/services/service/toDoAppService.js"></script>
+<script src="app/js/alertify.js"></script>
+<script src="app/js/ngAlertify.js"></script>
+<script src="app/js/knockout.js"></script>
+</body>
+</html>
